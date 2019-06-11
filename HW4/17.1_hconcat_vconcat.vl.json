@@ -1,0 +1,120 @@
+{
+    "$schema":"https://vega.github.io/schema/vega-lite/v3.json",
+    "vconcat": [
+        {
+            "hconcat": [
+                {
+                    "height": 400,
+                    "width": 600,                    
+                    "projection": {
+                        "type": "mercator"
+                    },
+                    "layer": [
+                        {
+                        "data":{
+                            "url": "map.json",
+                            "format": {
+                                "type": "topojson",
+                                "feature": "Ukraine"
+                            }
+                        },
+                        "mark": {
+                            "type": "geoshape",
+                            "fill": "lightgray",
+                            "fillOpacity": 0.7,
+                            "stroke": "white",
+                            "strokeWidth": 0.7
+                        }
+                    },
+                        {
+                            "data":{
+                                "url": "population.csv"
+                            },
+                            "mark": "circle",
+                            "encoding": {
+                                "longitude": {
+                                    "field": "lon",
+                                    "type": "quantitative"
+                                },
+                                "latitude": {
+                                    "field": "lat",
+                                    "type": "quantitative"
+                                },
+                                "color":{
+                                    "field": "type",
+                                    "type": "nominal",
+                                    "scale": {
+                                        "range": ["#c51b7d", "#35978f"]
+                                    }
+                                }
+                            }
+
+                        }
+                    ]
+                },
+
+                {
+                    "height": 400,
+                    "width": 20,
+                    "data":{
+                        "url": "population.csv"
+                    },
+                    "mark": "tick",
+                    "encoding":{
+                        "y": {
+                            "field": "lat",
+                            "title": null,
+                            "type": "quantitative",
+                            "scale":{
+                                "zero": false,
+                                "nice": false
+                            },
+                            "axis": {
+                                "orient": "right"
+                            }
+                        },
+                        "color":{
+                            "field": "type",
+                            "type": "nominal"
+                        }
+                    },
+                    "title":{
+                        "text": "latitude",
+                        "orient": "right"
+                    }
+                }                
+            ]
+        },
+
+        {
+            "height": 20,
+            "width": 600,
+
+            "data":{
+                "url": "population.csv"
+            },
+
+            "mark":"tick",
+
+            "encoding": {
+                "x":{
+                    "field": "lon",
+                    "title": null,
+                    "type": "quantitative",
+                    "scale":{
+                        "zero": false,
+                        "nice":false
+                    }
+                },
+                "color":{
+                    "field": "type",
+                    "type": "nominal"
+                }
+            },
+            "title": {
+                "text": "longtitude",
+                "orient": "bottom"
+            }            
+        }
+    ]
+}
