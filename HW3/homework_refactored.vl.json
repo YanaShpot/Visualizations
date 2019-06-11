@@ -1,0 +1,69 @@
+{
+    "$schema":"https://vega.github.io/schema/vega-lite/v3.json",
+    "height": 265,
+    "width": 122,
+    "config": {
+        "tick": {
+            "thickness": 1,
+            "bandSize": 7.5,
+            "opacity": 0.75,
+            "tickSize": 3
+        },
+        "view": {
+            "strokeOpacity": 0
+        },
+        "axis": {
+            "tickColor": "gray",
+            "domainColor": "gray",
+            "gridColor": "lightGray",
+            "titleFontSize": 13,
+            "titleFontWeight": "bolder",
+            "labelFontSize": 12
+        }
+    },
+    "data": {"url":"weather_vs_electricity_consumption.csv"},
+    "mark":{
+        "type": "circle",
+        "size": 20,
+        "color": "black",
+        "opacity": 1
+
+    },
+    "encoding":{
+
+        "column": {
+            "field": "season",
+            "type": "ordinal",
+            "title": "Electricity consumption",
+            "sort": "descending"
+        },
+
+        "x":{
+            "field": "tavg",
+            "title": "tavg",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "values":[-10 ,0,10,20],
+                "tickCount": 4
+            }
+
+        },
+        "y":{
+            "field": "consumption",
+            "type": "quantitative",
+            "scale": {
+                "zero": false,
+                "domain":[300000,550000]
+
+            },
+            "axis": {
+                "tickCount": 6
+            }
+        
+
+        }
+
+    }
+
+}
